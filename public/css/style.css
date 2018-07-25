@@ -1,0 +1,52 @@
+
+
+.navbar {
+    border-radius: 0;
+}
+
+.article .a-title {
+    font-family: 'MuseoSansCyr', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.article {
+    margin-bottom: 2em;    
+    border-bottom: 1px solid #e5e5e5;
+    
+}
+
+h2 {
+    font-size: 2.3em;
+    line-height: 1.125;
+    margin: 0 0 0.375em 0;
+    font-weight: normal;
+    
+}
+
+.a-info {
+    margin-bottom: 0.5em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 0.85em;
+    color: #888;
+    
+}
+
+.a-content {
+    font-size: 1.2em;
+    line-height: 1.5;
+   
+    
+}
+
+.a-footer {
+    margin-top: 3em;
+    margin-bottom: 2em;
+    font-size: 1.2em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #888;
+}
+
+#operations {
+    margin-top: 20px;
+    text-align:center;
+}
+
