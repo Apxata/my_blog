@@ -31,7 +31,7 @@ class Article {
     }
 
     static public function find_all_visible() {
-        $sql = "SELECT * FROM articles WHERE visible = 1";
+        $sql = "SELECT * FROM articles WHERE visible = 1 ORDER BY create_date DESC";
         return self::find_by_sql($sql);
     }
 
@@ -44,6 +44,25 @@ class Article {
         }
         return $object;
     }
+
+    public function create() {
+        $sql ="INSERT INTO articles (";
+        $sql .= "author_id, preview_text, full_text, subject, visible ";
+        $sql .= ")  VALUES (";
+        $sql .= "'" . $this->author_id . "', ";
+        $sql .= "'" . $this->preview_text . "', ";
+        $sql .= "'" . $this->full_text . "', ";
+        $sql .= "'" . $this->subject . "', ";
+        $sql .= "'" . $this->visible . "'";
+        $sql .= ")";
+
+        $result = self::$database->query($sql);
+        if($result) {
+            $this->id = self::$database->insert_id;
+        }
+        return $result;
+    }
+
     // end of active record 
 
     public $id;
@@ -55,6 +74,18 @@ class Article {
     public $subject;
     public $visible;
 
+
+    public function __construct($args=[]) {
+
+        $this->author_id = $args['author_id'] ?? '20';
+        $this->create_date = $args['create_date'] ?? '';
+        $this->last_edit_date = $args['last_edit_date'] ?? '';
+        $this->preview_text = $args['preview_text'] ?? '';
+        $this->full_text = $args['full_text'] ?? '';
+        $this->subject = $args['subject'] ?? '';
+        $this->visible = $args['visible'] ?? '';
+
+    }
 }
 
 ?>

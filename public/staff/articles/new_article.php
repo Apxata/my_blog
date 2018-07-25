@@ -1,5 +1,39 @@
-<?php require_once('../../../private/initialize.php'); ?>
+<?php 
+    require_once('../../../private/initialize.php'); 
+
+    if(!empty($_POST)) {
+        
+        // создаем запись используя эти параметры
+
+        $args=[];
+        $args['subject'] = $_POST['subject'] ?? NULL;
+        $args['full_text'] = $_POST['full_text'] ?? NULL;
+        $args['visible'] = $_POST['visible'] ?? 0;
+
+        $article = new Article($args);
+        $result = $article->create();
+
+        if($result == true) {
+            $new_id = $article->id;
+            echo  "Успешно добавлено";
+
+        } else {
+
+            echo  "Что-то пошло не так";
+        
+    }
+}
+?>
+
+
+
+
+
+
+
+
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
+
 
 
 <div class="main">
@@ -27,4 +61,4 @@
 
     
     
-       <?php include(SHARED_PATH . '/staff_footer.php'); ?>
+<?php include(SHARED_PATH . '/staff_footer.php'); ?>
