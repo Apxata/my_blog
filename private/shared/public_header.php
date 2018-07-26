@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -25,9 +25,7 @@
                             <a class="navbar-brand" href="index.php">Блог Архата</a>
                     </div>
                        <!-- navbar header  -->
-                    
                        <div class="collapse navbar-collapse" id="collapse">
-                            
                             <ul class="nav navbar-nav navbar-right">
                                     <li class="active"><a href="#">Главная</a></li>
                                     <li ><a href="#">Обо мне</a></li>
@@ -39,16 +37,10 @@
                                         </div>
                                         <button type="submit" class="btn btn-default">Найти</button>
                                 </form>
-                              
                        </div>
                        <!-- collapse navbar-collapse -->
-                       
                     </div> 
-                    <!-- row -->
                 </div> 
                 <!-- menu container                 -->
             </nav>
-            <!-- nav -->
         </header>
-
-

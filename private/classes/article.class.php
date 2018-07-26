@@ -4,6 +4,7 @@ class Article {
 
     // start of active record 
     static protected $database;
+    static protected $db_columns = ['id', 'author_id', 'create_date', 'last_edit_date', 'preview_text', 'full_text', 'subject', 'visible'];
 
     static public function set_database($database) {
         self::$database = $database;
@@ -44,23 +45,51 @@ class Article {
         }
         return $object;
     }
+        // Старая версия создания записи
+
+    // public function create() {
+    //     $sql ="INSERT INTO articles (";
+    //     $sql .= "author_id, preview_text, full_text, subject, visible ";
+    //     $sql .= ")  VALUES (";
+    //     $sql .= "'" . $this->author_id . "', ";
+    //     $sql .= "'" . $this->preview_text . "', ";
+    //     $sql .= "'" . $this->full_text . "', ";
+    //     $sql .= "'" . $this->subject . "', ";
+    //     $sql .= "'" . $this->visible . "'";
+    //     $sql .= ")";
+
+    //     $result = self::$database->query($sql);
+    //     if($result) {
+    //         $this->id = self::$database->insert_id;
+    //     }
+    //     return $result;
+    // }
 
     public function create() {
+        $attributes = $this->attributes();
         $sql ="INSERT INTO articles (";
-        $sql .= "author_id, preview_text, full_text, subject, visible ";
-        $sql .= ")  VALUES (";
-        $sql .= "'" . $this->author_id . "', ";
-        $sql .= "'" . $this->preview_text . "', ";
-        $sql .= "'" . $this->full_text . "', ";
-        $sql .= "'" . $this->subject . "', ";
-        $sql .= "'" . $this->visible . "'";
-        $sql .= ")";
+        $sql .= join(', ', array_keys($attributes));
+        $sql .= ")  VALUES ('";
+        $sql .= join("', '", array_values($attributes));
+        $sql .= "')";
 
         $result = self::$database->query($sql);
         if($result) {
             $this->id = self::$database->insert_id;
         }
         return $result;
+    }
+
+
+    public function attributes(){
+      $attributes = [];
+        foreach(self::$db_columns as $column) {
+            if($column == 'id' or $column == 'create_date' or $column == 'last_edit_date'){
+                continue;
+            }
+            $attributes[$column] = $this->$column;
+        }
+    return $attributes;
     }
 
     // end of active record 

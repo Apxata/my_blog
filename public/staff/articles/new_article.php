@@ -1,7 +1,7 @@
 <?php 
     require_once('../../../private/initialize.php'); 
 
-    if(!empty($_POST)) {
+    if(is_post_request()) {
         
         // создаем запись используя эти параметры
 
