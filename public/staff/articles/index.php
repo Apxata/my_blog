@@ -16,9 +16,12 @@
                     <div class="a-info"><?php echo h($article->create_date); ?></div>
                     <div class="a-content">
                         <?php echo h($article->full_text); ?>               
-                    </div>
-                    <!-- a-content -->
-                    <div class="a-footer">10 комментариев</div>
+                    </div>   <!-- a-content -->
+                 
+                    <div class="a-footer">
+                    <div class="comments"> 10 комментариев </div>
+                    <div class="btn btn-primary editing col-sm-offset-6">Редактировать</div>
+                     </div> <!-- a-footer -->
             </div>
             <!-- article -->
          </div>

@@ -43,10 +43,24 @@ h2 {
     font-size: 1.2em;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #888;
+    
+}
+
+.a-footer .comments {
+     display:inline-block; 
+    text-align: left;
+
+}
+.a-footer .editing {
+    display:inline-block;
+    text-align:right;
+
 }
 
 #operations {
     margin-top: 20px;
     text-align:center;
 }
+
+
 
