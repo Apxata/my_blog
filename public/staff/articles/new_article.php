@@ -20,9 +20,11 @@
         } else {
 
             echo  "Что-то пошло не так";
-        
+        }
+    } else {
+        $article = new Article;
     }
-}
+
 ?>
 
 

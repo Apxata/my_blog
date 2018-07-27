@@ -36,6 +36,18 @@ class Article {
         return self::find_by_sql($sql);
     }
 
+    static public function find_by_id($id) {
+        $id = self::$database->escape_string($id);
+        $sql = "SELECT * FROM articles WHERE id =$id";
+        $object_array = self::find_by_sql($sql);
+        if(!empty($object_array)){
+            return array_shift($object_array);
+        } else {
+            return false;
+        }
+
+    }
+
     static protected function instantiate($record) {
         $object = new self;
         foreach($record as $property => $value) {
@@ -80,6 +92,28 @@ class Article {
         return $result;
     }
 
+    public function update(){
+        $attributes = $this->sanitized_attributes();
+        $attributes_pairs = [];
+        foreach($attributes as $key => $value) {
+            $attributes_pairs[] = "{$keys}='{$value}'";
+        }
+
+        $sql = "UPDATE articles SET ";
+        $sql .= join(', ', $attributes_pairs);
+        $sql .=" WHERE id='" . self::$database->escape_string($this->id) . "'";
+        $sql .="LIMIT 1";
+        $result = self::$database->query($sql);
+        return $result;
+    }
+
+    public function merge_attributes($args=[]){
+        foreach($args as $key => $value) {
+            if(property_exists($this, $key) && !is_null($value)) {
+                $this->$key = $value;
+            }
+        }
+    }
 
     public function attributes(){
       $attributes = [];

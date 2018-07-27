@@ -20,7 +20,7 @@
                  
                     <div class="a-footer">
                     <div class="comments"> 10 комментариев </div>
-                    <div class="btn btn-primary editing col-sm-offset-6">Редактировать</div>
+                    <div class="editing col-sm-offset-6"><a href="edit.php?id=<?php echo h(u($article->id)); ?>">Редактировать</a></div>
                      </div> <!-- a-footer -->
             </div>
             <!-- article -->
