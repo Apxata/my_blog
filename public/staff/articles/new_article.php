@@ -5,18 +5,20 @@
         
         // создаем запись используя эти параметры
 
-        $args=[];
-        $args['subject'] = $_POST['subject'] ?? NULL;
-        $args['full_text'] = $_POST['full_text'] ?? NULL;
-        $args['visible'] = $_POST['visible'] ?? 0;
+        $args = $_POST['article'];
+
+        // $args['subject'] = $_POST['subject'] ?? NULL;
+        // $args['full_text'] = $_POST['full_text'] ?? NULL;
+        // $args['visible'] = $_POST['visible'] ?? 0;
 
         $article = new Article($args);
-        $result = $article->create();
+        $result = $article->save();
 
         if($result == true) {
             $new_id = $article->id;
-            echo  "Успешно добавлено";
-
+            $_SESSION['message'] = 'Новая статья успешно добавлена';
+            redirect_to(url_for('/staff/articles/show.php?id=' . $new_id));
+            
         } else {
 
             echo  "Что-то пошло не так";

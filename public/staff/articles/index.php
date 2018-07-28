@@ -3,7 +3,7 @@
 
 <?php 
     // ищем все статьи и выводим
-    $articles = Article::find_all_visible();
+    $articles = Article::find_all();
 
     foreach($articles as $article) {
 ?>        
@@ -21,6 +21,7 @@
                     <div class="a-footer">
                     <div class="comments"> 10 комментариев </div>
                     <div class="editing col-sm-offset-6"><a href="edit.php?id=<?php echo h(u($article->id)); ?>">Редактировать</a></div>
+                    <div class="visible"> Статья показывается:<?php if($article->visible == 1) {echo "ДА";} else { echo "НЕТ"; } ?></div>
                      </div> <!-- a-footer -->
             </div>
             <!-- article -->

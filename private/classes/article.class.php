@@ -5,6 +5,7 @@ class Article {
     // start of active record 
     static protected $database;
     static protected $db_columns = ['id', 'author_id', 'create_date', 'last_edit_date', 'preview_text', 'full_text', 'subject', 'visible'];
+    public $errors = [];
 
     static public function set_database($database) {
         self::$database = $database;
@@ -27,7 +28,7 @@ class Article {
     }
 
     static public function find_all() {
-        $sql = "SELECT * FROM articles";
+        $sql = "SELECT * FROM articles ORDER BY create_date DESC";
         return self::find_by_sql($sql);
     }
 
@@ -76,8 +77,12 @@ class Article {
     //     }
     //     return $result;
     // }
+    protected function validate() {
 
-    public function create() {
+    }
+
+    protected function create() {
+        $this->validate();
         $attributes = $this->sanitized_attributes();
         $sql ="INSERT INTO articles (";
         $sql .= join(', ', array_keys($attributes));
@@ -92,11 +97,11 @@ class Article {
         return $result;
     }
 
-    public function update(){
+    protected function update(){
         $attributes = $this->sanitized_attributes();
         $attributes_pairs = [];
         foreach($attributes as $key => $value) {
-            $attributes_pairs[] = "{$keys}='{$value}'";
+            $attributes_pairs[] = "{$key}='{$value}'";
         }
 
         $sql = "UPDATE articles SET ";
@@ -105,6 +110,15 @@ class Article {
         $sql .="LIMIT 1";
         $result = self::$database->query($sql);
         return $result;
+    }
+
+    public function save() {
+        if(isset($this->id)){
+            return $this->update();
+         } else {
+             return $this->create();
+         }
+
     }
 
     public function merge_attributes($args=[]){
