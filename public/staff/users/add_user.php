@@ -3,9 +3,10 @@
 
     if(is_post_request()) {
         
-        $password = $_POST['user']['hashed_password'];
-        $hashed_pswd = password_hash($password,PASSWORD_DEFAULT);
-        $_POST['user']['hashed_password'] = $hashed_pswd;
+        // $password = $_POST['user']['hashed_password'];
+        // $hashed_pswd = password_hash($password,PASSWORD_DEFAULT);
+        // $_POST['user']['hashed_password'] = $hashed_pswd;
+        $_POST['user']['hashed_password'] = generate_hash($_POST['user']['hashed_password']);
         
         $args = $_POST['user'];
         

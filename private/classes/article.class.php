@@ -2,10 +2,66 @@
 
 class Article extends DatabaseObject {
 
-    // start of active record 
+ 
     static protected $table_name = 'articles';
     static protected $db_columns = ['id', 'author_id', 'create_date', 'last_edit_date', 'preview_text', 'full_text', 'subject', 'visible'];
     public $errors = [];
+
+    public $id;
+    public $author_id = 1;
+    public $create_date = 0;
+    public $last_edit_date = 0;
+    public $preview_text;
+    public $full_text;
+    public $subject;
+    public $visible;
+
+
+    public function __construct($args=[]) {
+       
+        if (isset($args['author_id'])) {
+            $this->author_id = $args['author_id'];
+        } else {
+            $this->author_id = 20; 
+        }
+        
+        if (isset($args['create_date'])) {
+            $this->create_date = $args['create_date'];
+        } else {
+            $this->create_date = ''; 
+        }
+
+        if (isset($args['last_edit_date'])) {
+            $this->last_edit_date = $args['last_edit_date'];
+        } else {
+            $this->last_edit_date = ''; 
+        }
+
+        if (isset($args['preview_text'])) {
+            $this->preview_text = $args['preview_text'];
+        } else {
+            $this->preview_text = ''; 
+        }
+
+        if (isset($args['full_text'])) {
+            $this->full_text = $args['full_text'];
+        } else {
+            $this->full_text = ''; 
+        }
+
+        if (isset($args['subject'])) {
+            $this->subject = $args['subject'];
+        } else {
+            $this->subject = ''; 
+        }
+
+        if (isset($args['visible'])) {
+            $this->visible = $args['visible'];
+        } else {
+            $this->visible = ''; 
+        }
+
+    }
 
     // static public function set_database($database) {
     //     self::$database = $database;
@@ -142,16 +198,16 @@ class Article extends DatabaseObject {
     //     }
     // }
 
-    // public function attributes(){
-    //   $attributes = [];
-    //     foreach(self::$db_columns as $column) {
-    //         if($column == 'id' or $column == 'create_date' or $column == 'last_edit_date'){
-    //             continue;
-    //         }
-    //         $attributes[$column] = $this->$column;
-    //     }
-    // return $attributes;
-    // }
+    public function attributes(){
+      $attributes = [];
+        foreach(self::$db_columns as $column) {
+            if($column == 'id' or $column == 'create_date' or $column == 'last_edit_date'){
+                continue;
+            }
+            $attributes[$column] = $this->$column;
+        }
+    return $attributes;
+    }
 
     // protected function sanitized_attributes() {
     //     $sanitized = [];
@@ -163,62 +219,10 @@ class Article extends DatabaseObject {
 
     // end of active record 
 
-    public $id;
-    public $author_id = 1;
-    public $create_date = 0;
-    public $last_edit_date = 0;
-    public $preview_text;
-    public $full_text;
-    public $subject;
-    public $visible;
 
 
-    public function __construct($args=[]) {
-        
-       
-        if (isset($args['author_id'])) {
-            $this->author_id = $args['author_id'];
-        } else {
-            $this->author_id = 20; 
-        }
 
-        
-        if (isset($args['create_date'])) {
-            $this->create_date = $args['create_date'];
-        } else {
-            $this->create_date = ''; 
-        }
-
-        if (isset($args['last_edit_date'])) {
-            $this->last_edit_date = $args['last_edit_date'];
-        } else {
-            $this->last_edit_date = ''; 
-        }
-
-        if (isset($args['preview_text'])) {
-            $this->preview_text = $args['preview_text'];
-        } else {
-            $this->preview_text = ''; 
-        }
-
-        if (isset($args['full_text'])) {
-            $this->full_text = $args['full_text'];
-        } else {
-            $this->full_text = ''; 
-        }
-
-        if (isset($args['subject'])) {
-            $this->subject = $args['subject'];
-        } else {
-            $this->subject = ''; 
-        }
-
-        if (isset($args['visible'])) {
-            $this->visible = $args['visible'];
-        } else {
-            $this->visible = ''; 
-        }
-
+    
 
 
 
@@ -230,7 +234,7 @@ class Article extends DatabaseObject {
         // $this->subject = $args['subject'] //?? '';
         // $this->visible = $args['visible'] //?? '';
 
-    }
+    
 }
 
 ?>

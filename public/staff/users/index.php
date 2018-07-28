@@ -18,6 +18,8 @@
             <th>Имя </th>
             <th>Фамилия</th>
             <th>Удален</th>
+            <th>Редактировать</th>
+
           </tr>
   <?php foreach($users as $user) { ?>
           <tr>
@@ -27,6 +29,8 @@
             <td><?php echo h($user->first_name);?></td>
             <td><?php echo h($user->last_name);?></td>
             <td><?php echo h($user->deleted);?></td>
+            <td><a href="edit_user.php?id=<?php echo h($user->id); ?>">Ред</a></td>
+            
 
           </tr>
           

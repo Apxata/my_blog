@@ -51,4 +51,9 @@ if(!function_exists('money_format')) {
   }
 }
 
+function generate_hash($password) {
+  $password = password_hash($password, PASSWORD_DEFAULT);
+  return $password;
+}
+
 ?>

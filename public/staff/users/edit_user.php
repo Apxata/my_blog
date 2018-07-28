@@ -2,12 +2,12 @@
     require_once('../../../private/initialize.php'); 
     
     if(!isset($_GET['id'])) {
-        redirect_to(url_for('/staff/user/index.php'));
+        redirect_to(url_for('/staff/users/index.php'));
       }
       $id = $_GET['id'];
       $user = User::find_by_id($id);
       if($user == false) {
-        redirect_to(url_for('/staff/user/index.php'));
+        redirect_to(url_for('/staff/users/index.php'));
       }
 
     if(is_post_request()) {
@@ -34,7 +34,7 @@
                 // ошибка
         }
     } else {
-        $user = new User;
+       
     }
 
 ?>
@@ -49,7 +49,7 @@
             <!-- выводим сообщение об ошибках если есть  -->
             <?php echo display_errors($user->errors); ?>
 
-            <form class="form-horizontal" action="add_user.php" method="post">
+            <form class="form-horizontal" action="edit_user.php?id=<?php echo h($user->id); ?>" method="post">
                 <?php include('form_fields.php'); ?>
                 <div id="operations">
                     <div class="col-sm-offset-2 col-sm-10">

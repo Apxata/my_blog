@@ -6,13 +6,10 @@
     
     <h2 class="a-title"></h2>
     
-    <!-- <input name="user[email]" type="email" class="form-control" placeholder="Тема поста" value="<?php echo h($user->username);?>">   -->
-    <!-- <input name="user[email]" type="password" class="form-control" placeholder="Тема поста" value="<?php echo h($user->username);?>">   -->
-
    <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label">Почта(логин)</label>
     <div class="col-sm-10">
-      <input type="email" name="user[email]" class="form-control" id="inputEmail3" placeholder="Почта(логин)">
+      <input type="email" name="user[email]" class="form-control" id="inputEmail3" placeholder="Почта(логин)" value="<?php echo h($user->email);?>">
     </div>
   </div>
   <div class="form-group">

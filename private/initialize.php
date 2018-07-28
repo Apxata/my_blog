@@ -17,6 +17,7 @@
     // добавление классов
     require_once('classes/databaseobject.class.php');
     require_once('classes/article.class.php');
+    require_once('classes/user.class.php');
     
 	
     $database = db_connect();

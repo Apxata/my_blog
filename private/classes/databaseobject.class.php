@@ -137,7 +137,7 @@ class DatabaseObject {
      public function attributes(){
        $attributes = [];
          foreach(static::$db_columns as $column) {
-             if($column == 'id' or $column == 'create_date' or $column == 'last_edit_date'){
+             if($column == 'id'){
                  continue;
              }
              $attributes[$column] = $this->$column;
