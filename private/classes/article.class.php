@@ -161,14 +161,14 @@ class Article {
 
 
     public function __construct($args=[]) {
-
-        $this->author_id = $args['author_id'] ?? '20';
-        $this->create_date = $args['create_date'] ?? '';
-        $this->last_edit_date = $args['last_edit_date'] ?? '';
-        $this->preview_text = $args['preview_text'] ?? '';
-        $this->full_text = $args['full_text'] ?? '';
-        $this->subject = $args['subject'] ?? '';
-        $this->visible = $args['visible'] ?? '';
+        
+        $this->author_id = $args['author_id']; //?? '20';
+        $this->create_date = $args['create_date']; //?? '';
+        $this->last_edit_date = $args['last_edit_date']; //?? '';
+        $this->preview_text = $args['preview_text']; //?? '';
+        $this->full_text = $args['full_text']; //?? '';
+        $this->subject = $args['subject']; //?? '';
+        $this->visible = $args['visible']; //?? '';
 
     }
 }
