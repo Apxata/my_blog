@@ -5,7 +5,7 @@ class DatabaseObject {
      // start of active record 
      static protected $database;
      static protected $table_name = "";
-     static protected $db_columns = []];
+     static protected $db_columns = [];
      public $errors = [];
  
      static public function set_database($database) {
@@ -21,7 +21,7 @@ class DatabaseObject {
          // result into object 
          $object_array = [];
          while($record = $result->fetch_assoc()) {
-             $object_array[] = self::instantiate($record);
+             $object_array[] = static::instantiate($record);
          }
          $result->free();
  
@@ -30,18 +30,14 @@ class DatabaseObject {
  
      static public function find_all() {
          $sql = "SELECT * FROM " . static::$table_name;
-         return self::find_by_sql($sql);
-     }
- 
-     static public function find_all_visible() {
-         $sql = "SELECT * FROM articles WHERE visible = 1 ORDER BY create_date DESC";
-         return self::find_by_sql($sql);
+         return static::find_by_sql($sql);
      }
  
      static public function find_by_id($id) {
          $id = self::$database->escape_string($id);
-         $sql = "SELECT * FROM articles WHERE id =$id";
-         $object_array = self::find_by_sql($sql);
+         $sql = "SELECT * FROM " . static::$table_name . " ";
+         $sql .= "WHERE id = $id ";
+         $object_array = static::find_by_sql($sql);
          if(!empty($object_array)){
              return array_shift($object_array);
          } else {
@@ -51,7 +47,7 @@ class DatabaseObject {
      }
  
      static protected function instantiate($record) {
-         $object = new self;
+         $object = new static;
          foreach($record as $property => $value) {
              if(property_exists($object, $property)) {
                  $object->$property = $value;
@@ -80,13 +76,8 @@ class DatabaseObject {
      // }
      protected function validate() {
          $this->errors = [];
- 
-         if(is_blank($this->subject)) {
-             $this->errors[] = "Тема сообщения не может быть пустой";
-         }
-         if(is_blank($this->full_text)) {
-             $this->errors[] = "Сообщение не может быть пустым";
-         }
+        
+         // каждый класс сам определяет ошибки
          return $this->errors;
      }
  
@@ -95,7 +86,7 @@ class DatabaseObject {
          if(!empty($this->errors)) {return false;}
  
          $attributes = $this->sanitized_attributes();
-         $sql ="INSERT INTO articles (";
+         $sql ="INSERT INTO " . static::$table_name . " (";
          $sql .= join(', ', array_keys($attributes));
          $sql .= ")  VALUES ('";
          $sql .= join("', '", array_values($attributes));
@@ -118,7 +109,7 @@ class DatabaseObject {
              $attributes_pairs[] = "{$key}='{$value}'";
          }
  
-         $sql = "UPDATE articles SET ";
+         $sql = "UPDATE " . static::$table_name . " SET ";
          $sql .= join(', ', $attributes_pairs);
          $sql .=" WHERE id='" . self::$database->escape_string($this->id) . "'";
          $sql .="LIMIT 1";
@@ -145,7 +136,7 @@ class DatabaseObject {
  
      public function attributes(){
        $attributes = [];
-         foreach(self::$db_columns as $column) {
+         foreach(static::$db_columns as $column) {
              if($column == 'id' or $column == 'create_date' or $column == 'last_edit_date'){
                  continue;
              }

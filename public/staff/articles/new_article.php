@@ -17,11 +17,10 @@
         if($result == true) {
             $new_id = $article->id;
             $_SESSION['message'] = 'Новая статья успешно добавлена';
-            redirect_to(url_for('/staff/articles/show.php?id=' . $new_id));
+            redirect_to(url_for('/staff/articles/index.php?id=' . $new_id));
             
         } else {
-
-            echo  "Что-то пошло не так";
+                // ошибка
         }
     } else {
         $article = new Article;
@@ -29,22 +28,16 @@
 
 ?>
 
-
-
-
-
-
-
-
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
-
-
 
 <div class="main">
     <div class="content container">
       <div class="row">
         <div class="redaktor col-md-8 col-md-offset-1">
             <h2>Добавление новой статьи </h2>
+            <!-- выводим сообщение об ошибках если есть  -->
+            <?php echo display_errors($article->errors); ?>
+
             <form action="new_article.php" method="post">
                 <?php include('form_fields.php'); ?>
                 <div id="operations">
