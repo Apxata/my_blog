@@ -59,14 +59,16 @@
 
          protected function validate() {
             $this->errors = [];
-    
+            if(!isset($this->id)){
+                $this->id = 0;
+            }
             if(is_blank($this->email)) {
                 $this->errors[] = "Почта не может быть пустой";
             }elseif (!has_length($this->email, array('max' => 255))) {
                 $this->errors[] = "Почта не может быть длинее 255 символов";
             }elseif (!has_valid_email_format($this->email)) {
                 $this->errors[] = "Почта неверного формата";
-            }elseif (has_unique_email($this->email, $this->id ?? 0)) {
+            }elseif (!has_unique_email($this->email, $this->id)) {
                 $this->errors[] = "Почта уже используется";
             }          
             
