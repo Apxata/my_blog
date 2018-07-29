@@ -15,15 +15,15 @@
   <div class="form-group">
     <label for="inputPassword1" class="col-sm-2 control-label">Пароль</label>
     <div class="col-sm-10">
-      <input type="password" name="user[hashed_password]" class="form-control" id="inputPassword1" placeholder="пароль">
+      <input type="password" name="user[password]" class="form-control" id="inputPassword1" placeholder="пароль">
     </div>
   </div>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="inputPassword2" class="col-sm-2 control-label">Повторите пароль</label>
     <div class="col-sm-10">
-      <input type="password" name="user[password2]" class="form-control" id="inputPassword3" placeholder="Password">
+      <input type="password" name="user[confirm_password]" class="form-control" id="inputPassword3" placeholder="Password">
     </div>
-   </div> -->
+   </div>
    <div class="form-group">
     <label for="inlineRadio1 inlineRadio2" class="col-sm-2 control-label">Удален</label>
     <div class="col-sm-10">

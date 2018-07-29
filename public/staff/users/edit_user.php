@@ -11,22 +11,12 @@
       }
 
     if(is_post_request()) {
-        
-        $password = $_POST['user']['hashed_password'];
-        $hashed_pswd = password_hash($password,PASSWORD_DEFAULT);
-        $_POST['user']['hashed_password'] = $hashed_pswd;
-        
+       
         $args = $_POST['user'];
-        
-        // $args['subject'] = $_POST['subject'] ?? NULL;
-        // $args['full_text'] = $_POST['full_text'] ?? NULL;
-        // $args['visible'] = $_POST['visible'] ?? 0;
-
-        $user = new User($args);
+        $user->merge_attributes($args);
         $result = $user->save();
 
         if($result == true) {
-            $new_id = $user->id;
             $_SESSION['message'] = 'Пользователь успешно обновлен';
             redirect_to(url_for('/staff/users/index.php'));
             

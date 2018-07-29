@@ -3,17 +3,8 @@
 
     if(is_post_request()) {
         
-        // $password = $_POST['user']['hashed_password'];
-        // $hashed_pswd = password_hash($password,PASSWORD_DEFAULT);
-        // $_POST['user']['hashed_password'] = $hashed_pswd;
-        $_POST['user']['hashed_password'] = generate_hash($_POST['user']['hashed_password']);
-        
         $args = $_POST['user'];
         
-        // $args['subject'] = $_POST['subject'] ?? NULL;
-        // $args['full_text'] = $_POST['full_text'] ?? NULL;
-        // $args['visible'] = $_POST['visible'] ?? 0;
-
         $user = new User($args);
         $result = $user->save();
 
