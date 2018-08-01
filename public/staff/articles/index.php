@@ -1,12 +1,10 @@
-<?php require_once('../../../private/initialize.php'); ?>
-
 <?php 
-    if(!$session->is_logged_in()) {
-        redirect_to(url_for('staff/login.php'));
-    }else {
-        
-    }
+    require_once('../../../private/initialize.php');
+    login_required();
 ?>
+
+
+
 
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 

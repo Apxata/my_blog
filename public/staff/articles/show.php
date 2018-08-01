@@ -1,6 +1,6 @@
 <?php 
     require_once('../../../private/initialize.php'); 
-    
+    login_required();
 
     if(!isset($_GET['id'])) {
         redirect_to('index.php');

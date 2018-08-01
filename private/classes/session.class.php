@@ -2,6 +2,8 @@
 
     class Session {
         private $user_id;
+        public $email;
+        private $last_login;
 
         public function __construct() {
             session_start();

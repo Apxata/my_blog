@@ -1,6 +1,7 @@
 <?php 
     require_once('../../../private/initialize.php'); 
-
+    login_required();
+    
     if(is_post_request()) {
         
         $args = $_POST['user'];

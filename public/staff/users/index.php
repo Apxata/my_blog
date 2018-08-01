@@ -1,4 +1,9 @@
-<?php require_once('../../../private/initialize.php'); ?>
+<?php 
+    require_once('../../../private/initialize.php'); 
+    login_required();
+?>
+
+
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <?php 
