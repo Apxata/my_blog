@@ -18,9 +18,12 @@
     require_once('classes/databaseobject.class.php');
     require_once('classes/article.class.php');
     require_once('classes/user.class.php');
+    require_once('classes/session.class.php');
     
 	
     $database = db_connect();
     DatabaseObject::set_database($database);
+
+    $session = new Session;
     
 ?>

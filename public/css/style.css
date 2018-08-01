@@ -88,3 +88,9 @@ h2 {
   margin: 1em 30px;
   width: 890px;
 }
+
+.intro-header {
+    background-image: url('../img/matrix-bg.jpg');
+    min-height: 400px;
+    color:white;
+}

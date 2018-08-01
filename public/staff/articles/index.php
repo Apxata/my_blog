@@ -1,4 +1,13 @@
 <?php require_once('../../../private/initialize.php'); ?>
+
+<?php 
+    if(!$session->is_logged_in()) {
+        redirect_to(url_for('staff/login.php'));
+    }else {
+        
+    }
+?>
+
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <?php 
