@@ -1,7 +1,7 @@
-<?php require_once("../includes/session.php"); ?>
-<?php require_once("../includes/functions.php"); ?>   
 <?php 
-$_SESSION["user_id"] = null;
-$_SESSION["nickname"] = null;
-redirect_to("login.php");
+require_once('../../private/initialize.php');
+
+$session->logout();
+
+redirect_to(url_for('/staff/login.php'));
 

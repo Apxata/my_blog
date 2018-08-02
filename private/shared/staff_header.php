@@ -27,9 +27,13 @@
                        <!-- navbar header  -->
                        <div class="collapse navbar-collapse" id="collapse">
                             <ul class="nav navbar-nav">
+                                <?php if ($session->is_logged_in()){ ?>
+                                    <li><a>Логин: <?php echo $session->email;?></a></li>
                                     <!-- <li class="active"><a href="/">Главная</a></li> -->
                                     <li><a href="index.php">Все статьи</a></li>
                                     <li ><a href="new_article.php">Добавить статью</a></li>
+                                    <li ><a href="../logout.php">Выйти</a></li>
+                                <?php } ?>
                                 </ul>
                                 <form class="navbar-form navbar-left">
                                         <div class="form-group">
