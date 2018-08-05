@@ -30,6 +30,8 @@
     <!-- end of main  -->
 
     <?php } ?>   
+
+    
        <?php include(SHARED_PATH . '/public_footer.php'); ?>
        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

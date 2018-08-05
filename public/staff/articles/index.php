@@ -1,16 +1,28 @@
 <?php 
     require_once('../../../private/initialize.php');
     login_required();
+if (isset($_GET['page'])){
+    $current_page = $_GET['page'];
+} else {
+    $current_page = 1 ;
+}
+$per_page = 10 ;
+$total_count = Article::count_all();
+
+$pagination = new Pagination($current_page, $per_page, $total_count);
+
+$sql  = "SELECT * FROM articles ";
+$sql .= "LIMIT {$per_page} ";
+$sql .= "OFFSET {$pagination->offset()} ";
+$articles = Article::find_by_sql($sql);
 ?>
 
-
-
-
+<?php $page_title = 'Статьи'; ?>
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <?php 
     // ищем все статьи и выводим
-    $articles = Article::find_all();
+   // $articles = Article::find_all();
 
     foreach($articles as $article) {
 ?>        
@@ -41,6 +53,12 @@
 </div> 
     <!-- end of main  -->
     <?php } ?>   
+
+<?php 
+    $url = url_for('staff/articles/index.php');
+    echo $pagination->page_links();
+?>
+   
        <?php include(SHARED_PATH . '/staff_footer.php'); ?>
        
    

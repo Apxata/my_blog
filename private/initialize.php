@@ -19,6 +19,7 @@
     require_once('classes/article.class.php');
     require_once('classes/user.class.php');
     require_once('classes/session.class.php');
+    require_once('classes/pagination.class.php');
     
 	
     $database = db_connect();
