@@ -4,6 +4,10 @@
     border-radius: 0;
 }
 
+#login-header {
+    margin-bottom: 0;
+}
+
 .article .a-title {
     font-family: 'MuseoSansCyr', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -91,6 +95,12 @@ h2 {
 
 .intro-header {
     background-image: url('../img/matrix-bg.jpg');
-    min-height: 400px;
+    min-height: 600px;
+    margin-top: 0;
+    padding-top: 0;
     color:white;
+}
+
+.visible .show {
+    font-weight: bold;
 }

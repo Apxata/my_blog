@@ -39,6 +39,14 @@ class DatabaseObject {
         $row = $result_set->fetch_array();
         return array_shift($row);
     }
+
+    static public function count_all_visible() {
+        $sql = "SELECT COUNT(*) FROM " . static::$table_name;
+        $sql .= " WHERE visible = 1";
+        $result_set = self::$database->query($sql);
+        $row = $result_set->fetch_array();
+        return array_shift($row);
+    }
  
      static public function find_by_id($id) {
          $id = self::$database->escape_string($id);
@@ -51,6 +59,25 @@ class DatabaseObject {
              return false;
          }
  
+     }
+
+     static public function find_all_per_page($per_page, $offset){
+        //$offset = self::$database->escape_string($offset);
+        $sql = "SELECT * FROM " . static::$table_name;
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= "OFFSET {$offset} ";
+        $result = static::find_by_sql($sql);
+        return $result;
+     }
+
+     static public function find_all_per_page_visible($per_page, $offset){
+        //$offset = self::$database->escape_string($offset);
+        $sql = "SELECT * FROM " . static::$table_name;
+        $sql .= " WHERE visible = 1 ";
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= "OFFSET {$offset} ";
+        $result = static::find_by_sql($sql);
+        return $result;
      }
  
      static protected function instantiate($record) {

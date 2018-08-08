@@ -56,4 +56,10 @@ function generate_hash($password) {
   return $password;
 }
 
+function createParas($text) {
+  $text = trim($text);
+
+  return '<p>' . preg_replace('/[\r\n]+/', "</p>\n<p>", $text) . "</p>\n";
+}
+
 ?>

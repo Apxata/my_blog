@@ -2,7 +2,7 @@
     require_once('../../private/initialize.php');
 
 
-$errors = [] ;
+$errors = [];
 $email = '';
 $password = '';
 
@@ -11,29 +11,41 @@ if(is_post_request()) {
     if(isset($_POST['email'])){
         $email = $_POST['email'];
     } else {
-        $email='';
+        $email = '';
     }
 
     if(isset($_POST['password'])){
         $password = $_POST['password'];
     } else {
-        $password='';
+        $password = '';
+    }
+}
+
+    // Валидация
+
+    if(is_blank($email)) {
+        $errors[] = "Почта не может быть пустой";
+    }
+    if(is_blank($password)) {
+        $errors[] = "Пароль не может быть пустым";
     }
 
- 
-}
+    //если не было ошибок, пробуем залогиниться
 
     if(empty($errors)) {
         $user = User::find_by_email($email);
+        // если почта найдена и пароль верный 
         if($user != false && $user->verify_pas($password)) {
+            // помечаем пользователя как залогиненного 
             $session->login($user);
             redirect_to(url_for('/staff/articles/index.php'));
         }else {
+            // что-то пошло не так, выводим ошибку
             $errors[] = "Попытка входа была неуспешной.";
         }
     }
 
-    $page_title = 'Log in';
+    $page_title = 'Страница входа';
 ?>
 <?php include(SHARED_PATH . '/login_header.php'); ?>
 
@@ -50,7 +62,9 @@ if(is_post_request()) {
             </div>
         </div>
 </header>
-    <?php  echo display_errors($errors); ?>
+    <?php  echo display_errors($errors); 
+           
+    ?>
 
 <form action="login.php" method="post">
 <table class="table">
@@ -74,5 +88,6 @@ if(is_post_request()) {
     </div>
 </form>
 
-<?php  ?>   
+<?php 
+include(SHARED_PATH . '/staff_footer.php'); ?>   
 

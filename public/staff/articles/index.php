@@ -6,15 +6,18 @@ if (isset($_GET['page'])){
 } else {
     $current_page = 1 ;
 }
-$per_page = 10 ;
+$per_page = 15 ;
 $total_count = Article::count_all();
 
 $pagination = new Pagination($current_page, $per_page, $total_count);
 
-$sql  = "SELECT * FROM articles ";
-$sql .= "LIMIT {$per_page} ";
-$sql .= "OFFSET {$pagination->offset()} ";
-$articles = Article::find_by_sql($sql);
+// $sql  = "SELECT * FROM articles ";
+// $sql .= "LIMIT {$per_page} ";
+// $sql .= "OFFSET {$pagination->offset()} ";
+// $articles = Article::find_by_sql($sql);
+ $offset = $pagination->offset();
+ $articles = Article::find_all_per_page($per_page, $offset);
+
 ?>
 
 <?php $page_title = 'Статьи'; ?>
@@ -34,13 +37,16 @@ $articles = Article::find_by_sql($sql);
                     <h2 class="a-title"><?php echo h($article->subject); ?></h2>
                     <div class="a-info"><?php echo h($article->create_date); ?></div>
                     <div class="a-content">
-                        <?php echo h($article->full_text); ?>               
+                        <?php  
+                        $Parsedown = new Parsedown();
+                        echo createparas($Parsedown->text($article->full_text)) ;
+                         ?>             
                     </div>   <!-- a-content -->
                  
                     <div class="a-footer">
                     <div class="comments"> 10 комментариев </div>
                     <div class="editing col-sm-offset-6"><a href="edit.php?id=<?php echo h(u($article->id)); ?>">Редактировать</a></div>
-                    <div class="visible"> Статья показывается:<?php if($article->visible == 1) {echo "ДА";} else { echo "НЕТ"; } ?></div>
+                    <div class="visible"> Статья показывается:<?php if($article->visible == 1) {echo  "<span class=\"show\">ДА</span>";} else { echo "НЕТ"; } ?></div>
                      </div> <!-- a-footer -->
             </div>
             <!-- article -->

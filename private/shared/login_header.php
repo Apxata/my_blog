@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Мой блог</title>
+        <title>Блог Архата</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
     <body>
         <header>
             
-            <nav class="navbar navbar-inverse" role="navigation">
+            <nav class="navbar navbar-inverse id" id="login-header" role="navigation">
                 <div class="container">
                     <div class="row col-md-offset-1">
                     <div class="navbar-header">
@@ -22,7 +22,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php">Блог Архата</a>
+                            <a class="navbar-brand" href="../index.php">Блог Архата</a>
                     </div>
                        <!-- navbar header  -->
                        <div class="collapse navbar-collapse" id="collapse">
@@ -31,12 +31,12 @@
                                     <li ><a href="#">Обо мне</a></li>
                                     <li><a href="#">Контакты</a></li>
                                 </ul>
-                                <form class="navbar-form navbar-left">
+                                <!-- <form class="navbar-form navbar-left">
                                         <div class="form-group">
                                           <input type="text" class="form-control" placeholder="Поиск">
                                         </div>
                                         <button type="submit" class="btn btn-default">Найти</button>
-                                </form>
+                                </form> -->
                        </div>
                        <!-- collapse navbar-collapse -->
                     </div> 

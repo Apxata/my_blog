@@ -13,6 +13,7 @@
     require_once('functions.php');
     require_once('validation_functions.php');
     require_once('status_error_functions.php'); 
+    require_once('Parsedown.php');
 
     // добавление классов
     require_once('classes/databaseobject.class.php');

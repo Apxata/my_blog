@@ -1,8 +1,20 @@
 <?php require_once('../private/initialize.php'); ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 <?php 
-    // ищем все статьи и выводим
-    $articles = Article::find_all_visible();
+    //ищем статьи постранично
+    if (isset($_GET['page'])){
+        $current_page = $_GET['page'];
+    } else {
+        $current_page = 1 ;
+    }
+    $per_page = 10 ;
+    $total_count = Article::count_all_visible();
+    
+    $pagination = new Pagination($current_page, $per_page, $total_count);
+
+    $offset = $pagination->offset();
+    $articles = Article::find_all_per_page_visible($per_page, $offset);
+
 
     foreach($articles as $article) {
 ?>        
@@ -14,10 +26,15 @@
                     <h2 class="a-title"><?php echo h($article->subject); ?></h2>
                     <div class="a-info"><?php echo h($article->create_date); ?></div>
                     <div class="a-content">
-                        <?php echo h($article->full_text); ?>               
+                        <?php
+                        $Parsedown = new Parsedown();
+                                                 
+                         echo createparas($Parsedown->text($article->full_text)) ;
+                         
+                          ?>               
                     </div>
                     <!-- a-content -->
-                    <div class="a-footer">10 комментариев</div>
+                    <div class="a-footer">0 комментариев</div>
             </div>
             <!-- article -->
          </div>
@@ -29,14 +46,12 @@
 </div> 
     <!-- end of main  -->
 
-    <?php } ?>   
-
-    
-       <?php include(SHARED_PATH . '/public_footer.php'); ?>
-       
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>   
-        <script src="js/myscript.js"></script>
+    <?php } 
         
+    $url = url_for('/index.php');
+    echo $pagination->page_links();
+    ?>   
+        <!-- подключаем футер -->
+       <?php  include(SHARED_PATH . '/public_footer.php'); ?>
     </body>
 </html>
