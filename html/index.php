@@ -29,7 +29,7 @@
                         <?php
                         $Parsedown = new Parsedown();
                                                  
-                         echo createparas($Parsedown->text($article->full_text)) ;
+                         echo $Parsedown->text($article->full_text) ;
                          
                           ?>               
                     </div>
