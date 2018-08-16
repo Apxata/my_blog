@@ -31,8 +31,8 @@
                                 <?php if ($session->is_logged_in()){ ?>
                                     <li><a>Логин: <?php echo $session->email;?></a></li>
                                     <!-- <li class="active"><a href="/">Главная</a></li> -->
-                                    <li><a href="index.php">Все статьи</a></li>
-                                    <li ><a href="new_article.php">Добавить статью</a></li>
+                                    <li><a href="/staff/articles/index.php">Статьи</a></li>
+                                    <li ><a href="/staff/users/index.php">Пользователи</a></li>
                                     <li ><a href="../logout.php">Выйти</a></li>
                                 <?php } ?>
                                 </ul>
