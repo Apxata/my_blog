@@ -37,7 +37,7 @@ $pagination = new Pagination($current_page, $per_page, $total_count);
                     <div class="a-content">
                         <?php  
                         $Parsedown = new Parsedown();
-                        echo $Parsedown->text($article->full_text) ;
+                        echo nl2br($Parsedown->text($article->full_text)) ;
                          ?>             
                     </div>   <!-- a-content -->
                  

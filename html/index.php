@@ -26,12 +26,14 @@
                     <h2 class="a-title"><?php echo h($article->subject); ?></h2>
                     <div class="a-info"><?php echo h($article->create_date); ?></div>
                     <div class="a-content">
+                       
                         <?php
                         $Parsedown = new Parsedown();
                                                  
-                         echo $Parsedown->text($article->full_text) ;
+                         echo nl2br($Parsedown->text($article->full_text)) ;
                          
-                          ?>               
+                          ?>       
+                            
                     </div>
                     <!-- a-content -->
                     <div class="a-footer">0 комментариев</div>
