@@ -38,7 +38,7 @@ if(is_post_request()) {
         if($user != false && $user->verify_pas($password)) {
             // помечаем пользователя как залогиненного 
             $session->login($user);
-            redirect_to(url_for('/staff/articles/index.php'));
+            redirect_to('articles/index.php');
         }else {
             // что-то пошло не так, выводим ошибку
             $errors[] = "Попытка входа была неуспешной.";

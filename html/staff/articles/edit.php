@@ -4,12 +4,12 @@ require_once('../../../private/initialize.php');
 login_required();
 
 if(!isset($_GET['id'])) {
-  redirect_to(url_for('/staff/articles/index.php'));
+  redirect_to('articles/index.php');
 }
 $id = $_GET['id'];
 $article = Article::find_by_id($id);
 if($article == false) {
-  redirect_to(url_for('/staff/article/index.php'));
+  redirect_to('/article/index.php');
 }
 
 if(is_post_request()) {
@@ -20,8 +20,8 @@ if(is_post_request()) {
   $result = $article->save();
 
   if($result === true) {
-    $_SESSION['message'] = 'The article was updated successfully.';
-    redirect_to(url_for('/staff/articles/index.php'));
+    $_SESSION['message'] = 'Статья успешно отредактирована';
+    redirect_to('/staff/articles/index.php');
   } else {
     // show errors
   }
@@ -41,13 +41,13 @@ if(is_post_request()) {
     <div class="content container">
       <div class="row">
         <div class="redaktor col-md-8 col-md-offset-1">
-            <a class="btn btn-primary" href="<?php echo url_for('/staff/articles/index.php'); ?>">&laquo; Вернуться обратно</a>
+            <a class="btn btn-primary" href="<?php echo ('/staff/articles/index.php'); ?>">&laquo; Вернуться обратно</a>
          
               <h1>Редактирование статьи</h1>
                   <!-- выводим сообщение об ошибках если есть  -->
                   <?php echo display_errors($article->errors); ?>
 
-              <form action="<?php echo url_for('/staff/articles/edit.php?id=' . h(u($id))); ?>" method="post">
+              <form action="<?php echo ('/staff/articles/edit.php?id=' . h(u($id))); ?>" method="post">
 
                 <?php include('form_fields.php'); ?>
 

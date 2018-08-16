@@ -7,7 +7,7 @@
 
 define("DB_SERVER", "localhost");
 define("DB_USER", "blouser");
-define("DB_PASS", "secretpassword");
+define("DB_PASS", "\"\WAS%pl4ALu#):");
 define("DB_NAME", "blog");
 
 ?>

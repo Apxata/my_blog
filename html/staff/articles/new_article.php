@@ -1,11 +1,10 @@
 <?php 
     require_once('../../../private/initialize.php'); 
     login_required();
-
     
     if(is_post_request()) {
         
-        // создаем запись используя эти параметры
+        // create a RECORD using this params
 
         $args = $_POST['article'];
 
@@ -15,11 +14,11 @@
 
         $article = new Article($args);
         $result = $article->save();
-
+        
         if($result == true) {
             $new_id = $article->id;
             $_SESSION['message'] = 'Новая статья успешно добавлена';
-            redirect_to(url_for('/staff/articles/index.php?id=' . $new_id));
+            redirect_to('/staff/articles/index.php?id=' . $new_id);
             
         } else {
                 // ошибка

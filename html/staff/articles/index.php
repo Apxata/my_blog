@@ -11,10 +11,6 @@ $total_count = Article::count_all();
 
 $pagination = new Pagination($current_page, $per_page, $total_count);
 
-// $sql  = "SELECT * FROM articles ";
-// $sql .= "LIMIT {$per_page} ";
-// $sql .= "OFFSET {$pagination->offset()} ";
-// $articles = Article::find_by_sql($sql);
  $offset = $pagination->offset();
  $articles = Article::find_all_per_page($per_page, $offset);
 
@@ -24,9 +20,7 @@ $pagination = new Pagination($current_page, $per_page, $total_count);
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <?php 
-    // ищем все статьи и выводим
-   // $articles = Article::find_all();
-
+   
     foreach($articles as $article) {
 ?>        
 <div class="main">
@@ -44,7 +38,7 @@ $pagination = new Pagination($current_page, $per_page, $total_count);
                     </div>   <!-- a-content -->
                  
                     <div class="a-footer">
-                    <div class="comments"> 10 комментариев </div>
+                    <div class="comments"> 0 комментариев </div>
                     <div class="editing col-sm-offset-6"><a href="edit.php?id=<?php echo h(u($article->id)); ?>">Редактировать</a></div>
                     <div class="visible"> Статья показывается:<?php if($article->visible == 1) {echo  "<span class=\"show\">ДА</span>";} else { echo "НЕТ"; } ?></div>
                      </div> <!-- a-footer -->

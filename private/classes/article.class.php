@@ -93,6 +93,26 @@ class Article extends DatabaseObject {
         return self::find_by_sql($sql);
     }
 
+    static public function find_all_per_page($per_page, $offset){
+        //$offset = self::$database->escape_string($offset);
+        $sql = "SELECT * FROM " . static::$table_name;
+        $sql .= " ORDER BY create_date DESC ";
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= "OFFSET {$offset} ";
+        $result = static::find_by_sql($sql);
+        return $result;
+    }
+
+    static public function find_all_per_page_visible($per_page, $offset){
+        //$offset = self::$database->escape_string($offset);
+        $sql = "SELECT * FROM " . static::$table_name;
+        $sql .= " WHERE visible = 1 ";
+        $sql .= " ORDER BY create_date DESC ";
+        $sql .= " LIMIT {$per_page} ";
+        $sql .= " OFFSET {$offset} ";
+        $result = static::find_by_sql($sql);
+        return $result;
+     }
     // static public function find_by_id($id) {
     //     $id = self::$database->escape_string($id);
     //     $sql = "SELECT * FROM articles WHERE id =$id";
