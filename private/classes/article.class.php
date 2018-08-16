@@ -2,9 +2,9 @@
 
 class Article extends DatabaseObject {
 
- 
     static protected $table_name = 'articles';
     static protected $db_columns = ['id', 'author_id', 'create_date', 'last_edit_date', 'preview_text', 'full_text', 'subject', 'visible'];
+   
     public $errors = [];
 
     public $id;
@@ -91,6 +91,17 @@ class Article extends DatabaseObject {
     static public function find_all_visible() {
         $sql = "SELECT * FROM articles WHERE visible = 1 ORDER BY create_date DESC";
         return self::find_by_sql($sql);
+    }
+
+    static public function find_article_by_id($id){
+        $id = (int) $id;
+        $sql = "SELECT * FROM articles WHERE id = $id ";
+        $object_array = self::find_by_sql($sql);
+         if(!empty($object_array)){
+             return array_shift($object_array);
+         } else {
+             return false;
+         }
     }
 
     static public function find_all_per_page($per_page, $offset){
@@ -238,13 +249,6 @@ class Article extends DatabaseObject {
     // }
 
     // end of active record 
-
-
-
-
-    
-
-
 
         // $this->author_id = $args['author_id'] ?? '20';
         // $this->create_date = $args['create_date'] //?? '';
