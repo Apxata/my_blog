@@ -6,15 +6,23 @@
 
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
-<?php 
-    // ищем все статьи и выводим
-    $users = User::find_all();
-
-?>        
+     
 <div class="main">
     <div class="content container">
         <div class="row">
-           <div class="article col-md-8 col-md-offset-1">
+           <div class="user col-md-8 col-md-offset-1">
+            <!-- USER ADD MENU -->
+           <div class="add_user">
+            <a href="add_user.php">Добавить пользователя</a>
+           </div>  <!-- user add -->
+
+           <?php 
+            // Searching for all users
+            $users = User::find_all();
+            ?>
+            
+        <h2>Список пользователей</h2>
+
         <table class="table table-bordered">
           <tr>
             <th>id</th>
@@ -24,7 +32,6 @@
             <th>Фамилия</th>
             <th>Удален</th>
             <th>Редактировать</th>
-
           </tr>
   <?php foreach($users as $user) { ?>
           <tr>
@@ -35,28 +42,16 @@
             <td><?php echo h($user->last_name);?></td>
             <td><?php echo h($user->deleted);?></td>
             <td><a href="edit_user.php?id=<?php echo h($user->id); ?>">Ред</a></td>
-            
-
           </tr>
-          
     <?php } // конец foreach ?>
-
         </table>
-      
-        <div class="add_user">
-            <a href="add_user.php">Добавить пользователя</a>
-        </div>  <!-- user add -->
-          
            </div>
             <!-- article -->
       </div>
         <!-- row  -->
-        <!-- row  -->
     </div>
     <!-- content container -->
 </div> 
-
-
     <!-- end of main  -->
      
        

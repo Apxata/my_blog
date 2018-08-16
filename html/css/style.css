@@ -58,6 +58,12 @@ h2 {
     border-bottom: 1px solid #e5e5e5;
 }
 
+.add_user {
+    padding-bottom: 1em;
+    margin-bottom: 1em;    
+    border-bottom: 1px solid #e5e5e5;
+}
+
 #operations {
     margin-top: 20px;
     text-align:center;
