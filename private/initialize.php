@@ -22,7 +22,7 @@
     require_once('classes/session.class.php');
     require_once('classes/pagination.class.php');
     
-	
+	//$database = DB::get_coonect();
     $database = db_connect();
     DatabaseObject::set_database($database);
 
